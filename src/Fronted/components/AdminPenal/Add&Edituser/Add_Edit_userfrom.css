@@ -21,8 +21,20 @@
     left: 0;
     right: 0;
     width: 45%;
-    height: 10vh;
+    height: 55vh;
     margin: auto;
+  }
+
+
+
+
+  .addUserDataMainSign{
+    width: 45%;
+    margin: auto;
+    margin-bottom: 25px;
+    margin-top: 15px;
+    box-shadow:4px 16px 32px 4px rgba(0, 0, 0, 0.582);
+ 
   }
   
   .textAddDiv {
@@ -75,11 +87,8 @@
   
   .f_l_IptDiv_img {
     display: flex;
-    /* margin-left: 120px; */
-    /* justify-content: space-around; */
     margin-top: 50px;
     margin-bottom: 25px;
-    /* flex: 1;    */
   }
   
   .bttnDivCrt {

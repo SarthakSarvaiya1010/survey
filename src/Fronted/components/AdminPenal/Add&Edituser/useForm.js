@@ -2,14 +2,23 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {  Update_user ,Register_user } from "../../../../Redux/Action/UserData";
 
+
+
+
 const useForm = (image, validate, hedaldata) => {
   const dispatch = useDispatch();
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [findErrors, setFindErrors] = useState(null);
+  
+
+
   let SurveyData = useSelector((state) => state?.postsurveyData);
 
   useEffect(() => {
+
+     
+
     if (findErrors) {
       setErrors(validate(values, hedaldata, SurveyData));
     }
@@ -18,6 +27,12 @@ const useForm = (image, validate, hedaldata) => {
   function handleSubmit(event) {
     console.log("value", values);
     setFindErrors(true);
+
+    
+
+   
+
+
 
     setErrors(validate(values, hedaldata, SurveyData));
 
@@ -43,7 +58,7 @@ const useForm = (image, validate, hedaldata) => {
       values?.confirmPassword || hedaldata?.confirmPassword
     );
 
-    formAddUserData.append("image_src", image || hedaldata?.image_src);
+    formAddUserData.append("image_src", image || hedaldata?.image_src    );
 
     formAddUserData.append(
       "last_name",

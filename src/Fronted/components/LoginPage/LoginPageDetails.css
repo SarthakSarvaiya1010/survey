@@ -84,22 +84,7 @@ margin-bottom: 25px;
 
 /* ------------------------------------------------------------------------------------- */
 
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  
-  body {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #f4f7ff;
-    overflow: hidden;
-  }
-   */
+
   .toast {
     position: absolute;
     top: 25px;

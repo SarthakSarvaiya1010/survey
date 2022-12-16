@@ -14,4 +14,10 @@
     padding: 10px 15px  10px;
     background-color: white;
     border: none;
+    margin-left: 10px;
+    
+}
+.logOutBttnDiv{
+    padding-bottom: 7px;
+    display: flex;
 }

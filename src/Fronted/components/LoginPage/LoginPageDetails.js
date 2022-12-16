@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "./LoginPageDetails.css";
 import { preview } from "../../../assets/images/index";
 import { postLoginData } from "../../../Redux/Action/LoginData";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import validate from "../AdminPenal/Add&Edituser/FromValidation";
 import useForm from "../AdminPenal/Add&Edituser/useForm";
 
@@ -18,40 +18,79 @@ function LoginPageDetails() {
 
   const submit = () => {
     dispatch(postLoginData({ email: values.email, password: values.password }));
-    localStorage.setItem("add", "success");
 
     hedalToastButton();
   };
 
-  let add = localStorage.getItem("add");
-  let admin = localStorage.getItem("admin");
+  
+  let add ;
+  add = localStorage.getItem("add");
+  let admin ; 
+  admin=localStorage.getItem("admin");
+
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    add = localStorage.getItem("add");
-
-    if (add !== "success") {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
+    if (add !== "success" && admin !== "admin") {
       localStorage.clear();
-    }
-    if (add === "success") {
-      navigate("/home");
-    }
-    if (admin === "admin") {
-      navigate("/admin");
-    }
-
+    }else{console.log("done");}
+    
+    
+    
     if (LoginData?.login_data?.data?.status) {
-      localStorage.setItem(
+    
+      
+         if (LoginData?.login_data?.data?.role_id === 3 ||LoginData?.login_data?.data?.role_id === 2) {
+          
+          localStorage.setItem("add", "success");
+          navigate("/home");
+
+
+
+          console.log("LoginData?.login_data?.data?.role_id === 3 ||LoginData?.login_data?.data?.role_id === 2>>>>home");  
+          
+          
+
+          }
+           else if(LoginData?.login_data?.data?.role_id === 1 ){
+          navigate("/admin")
+
+          localStorage.setItem("admin", "admin");
+          
+          
+          console.log("LoginData?.login_data?.data?.role_id === 1 ============================>>>>admin");
+          
+          
+        }
+        
+       localStorage.setItem(
         "login_data",
         JSON.stringify(LoginData?.login_data.data)
-      );
-      alert("done");
-      if (LoginData?.login_data?.data?.role_id === 1) {
-        localStorage.setItem("admin", "admin");
-      }
-    }
-  }, [LoginData, add, dispatch, navigate]);
+        );
+      
+        
+    
 
+    }else {
+      
+      if (add ==="success") {
+  
+          navigate("/home");
+        console.log("navigate  =====>>>>home");
+        }
+      else if(admin === "admin") {
+        console.log("navigate  =====>>>>admin");
+          navigate("/admin");
+      }
+
+    }
+  }, [LoginData?.login_data?.data , add, admin, dispatch, navigate]);
+
+  
+  
+  
   const toast = document.querySelector(".toast");
   const progress = document.querySelector(".progress");
 
@@ -63,11 +102,11 @@ function LoginPageDetails() {
 
     timer1 = setTimeout(() => {
       toast.classList.remove("active");
-    }, 5000); //1s = 1000 milliseconds
+    }, 2000); //1s = 1000 milliseconds
 
     timer2 = setTimeout(() => {
       progress.classList.remove("active");
-    }, 5300);
+    }, 2100);
   };
 
   const henadCloseIcon = () => {
@@ -96,11 +135,8 @@ function LoginPageDetails() {
           <i class="fa-solid fa-xmark close" onClick={() => henadCloseIcon()}>
             +*+
           </i>
-
           <div class="progress "></div>
         </div>
-
-        <button onClick={() => hedalToastButton()}>Show Toast</button>
       </div>
 
       <div className="LoginPageBody">
@@ -132,7 +168,9 @@ function LoginPageDetails() {
             </form>
             <div className="linksLog">
               <a href="Reset password">Reset password?</a>
+              <NavLink to="/sign_up">Sign up</NavLink>
             </div>
+
             <button
               value="Login"
               className="loginBttn"

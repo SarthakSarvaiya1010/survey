@@ -7,15 +7,11 @@ import "./Admin.css";
 import UsersShow from "./UsersShow";
 
 function Admin() {
- 
   let dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useState(null);
 
   let AdminData = useSelector((state) => state?.AdminData);
-
-
-
 
   useEffect(() => {
     dispatch(getUsetList());
@@ -24,11 +20,19 @@ function Admin() {
   let user_data = AdminData?.user_list.filter(
     (item) => item?.role_id === 2 || item?.role_id === 3
   );
-  console.log(
-    "user_datauser_datauser_datauser_datauser_datauser_data",
-    user_data
-  );
- 
+
+  useEffect(() => {
+    function handleEscapeKey(event) {
+      if (event.code === "Escape") {
+        setShow(false);
+      }
+    }
+
+    document.addEventListener("keydown", handleEscapeKey);
+
+    return () => document.removeEventListener("keydown", handleEscapeKey);
+  }, []);
+
   console.log("userDatauserData", userData);
 
   return (
@@ -56,27 +60,32 @@ function Admin() {
           <div style={{ display: "flex", flexWrap: "wrap", width: "75%" }}>
             {show ? (
               // eslint-disable-next-line react/jsx-pascal-case
-              <Add_Edit_userfrom hedalState={{ setShow, show }}  hedaldata={userData}               />
+              <Add_Edit_userfrom
+                hedalState={{ setShow, show }}
+                hedaldata={userData}
+              />
             ) : null}
 
-            {user_data?.map((item, id) => {
-              return (
-                <div
-                  key={id}
-                  style={{
-                    marginTop: "25px",
-                    width: "258px",
-                    marginBottom: "25px",
-                  }}
-                >
-                  <UsersShow
-                    item={item}
-                    hedalState={{ setShow, show }}
-                    hedaldata={setUserData}
-                  />
-                </div>
-              );
-            })}
+            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+              {user_data?.map((item, id) => {
+                return (
+                  <div
+                    key={id}
+                    style={{
+                      marginTop: "25px",
+                      width: "280px",
+                      marginBottom: "25px",
+                    }}
+                  >
+                    <UsersShow
+                      item={item}
+                      hedalState={{ setShow, show }}
+                      hedaldata={setUserData}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

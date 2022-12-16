@@ -1,34 +1,43 @@
+/* eslint-disable react/jsx-pascal-case */
 import { Footer, Header } from "./Fronted/components/index";
-import { Cheess, Home, Login, Adminpage ,Protected } from "./pages/index";
+import { Cheess, Home, Login, Adminpage, Protected } from "./pages/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SetRelation from "./pages/SetRelation";
 import { useEffect, useState } from "react";
 import CategoriePg from "./pages/CategoriePg";
 import { useSelector } from "react-redux";
+import { Add_Edit_userfrom } from "./Fronted/components/index";
 
 function App() {
+  
   // const [isLoggedIn, setisLoggedIn] = useState(localStorage.getItem("add")||"not");
-  let isLoggedIn = localStorage.getItem("add") || "not";
-  let login_data = JSON.parse(localStorage.getItem("login_data"));
-  let admin = localStorage.getItem("admin");
+  let isLoggedIn = localStorage.getItem("add");
+ 
+  let admin = localStorage.getItem("admin") ;
 
   let SurveyData = useSelector((state) => state?.postsurveyData);
 
-  const [user, setUser] = useState(localStorage.getItem("add") || "not");
+  const [user, setUser] = useState("not");
 
-  console.log("login_data", login_data, SurveyData);
+  let LoginData = useSelector((state) => state.LoginData);
+
+  console.log("login_data", SurveyData);
+
+
   useEffect(() => {
-    if (isLoggedIn) {
+    if (LoginData?.login_data?.data?.role_id === 3 ||LoginData?.login_data?.data?.role_id === 2 ||isLoggedIn ) {
       setUser({
         roles: ["super"],
       });
     }
-    if (admin) {
+    if (LoginData?.login_data?.data?.role_id === 1 || admin) {
       setUser({
         roles: ["admin"],
       });
     }
-  }, [admin, isLoggedIn]);
+  }, [LoginData?.login_data?.data?.role_id, admin, isLoggedIn]);
+
+
   console.log("isLoggedIn in app js ", user);
 
   return (
@@ -70,7 +79,7 @@ function App() {
           />
           <Route path="/setRelation" element={<SetRelation />} />
           <Route path="/categoriePg" element={<CategoriePg />} />
-          {/* </Switch> */}
+          <Route path="/sign_up" element={<Add_Edit_userfrom />} />
         </Routes>
         <Footer />
       </BrowserRouter>

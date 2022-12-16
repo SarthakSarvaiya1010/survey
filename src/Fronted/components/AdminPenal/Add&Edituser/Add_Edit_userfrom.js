@@ -1,22 +1,28 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import useForm from "./useForm"
+import useForm from "./useForm";
 import validate from "./FromValidation";
 import { palcesHoledr } from "../../../../assets/images";
 import "./Add_Edit_userfrom.css";
+import { useNavigate } from "react-router-dom";
 
 function Add_Edit_userfrom(props) {
   const { hedalState, hedaldata } = props;
   const [image, setImage] = useState(null);
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
-  let AdminData = useSelector((state) => state?.AdminData);
+  const navigate = useNavigate();
 
+
+console.log("hedalState.setShow hedalState hedalState  "  ,  !!hedalState?.setShow);
+
+
+  let AdminData = useSelector((state) => state?.AdminData);
 
   const { values, OnIntChange, handleSubmit, errors } = useForm(
     image,
     validate,
-    hedaldata
+    hedaldata,
   );
 
   // ---------- hedalImgChage----------
@@ -36,14 +42,28 @@ function Add_Edit_userfrom(props) {
     setImage(file);
   };
 
+    // --------------hedalCancale----------
+
+
+    const handleCancel =()=>{
+      if(!!!hedalState?.setShow){
+
+        navigate("/")
+      }
+      hedalState.setShow(false)
+    }
+
+
+
   return (
     <div>
-      <div className="addUserDataMain">
+      <div className={ !!hedalState?.setShow ? "addUserDataMain" : "addUserDataMainSign"}>
+
         <div className="boxAddUserMain">
           <div className="addUserMainLimit">
             {/* -----  Add New Use -------- */}
             <div className="textAddDiv">
-              {hedaldata ? <h1>Edit User</h1> : <h1>Add New User</h1>}
+              {hedaldata ? <h1>Edit User</h1> :  !!hedalState?.setShow ? <h1>Add New User</h1> : <h1>Registration</h1> }
             </div>
             {/*  From start */}
             <div className="mainIptDiv">
@@ -54,7 +74,7 @@ function Add_Edit_userfrom(props) {
                       type="file"
                       accept="image/*"
                       id="img"
-                      ref={imageUploader}
+                      ref={imageUploader }
                       onChange={hedalImgChage}
                       className="filetype"
                       style={{ display: "none" }}
@@ -62,7 +82,7 @@ function Add_Edit_userfrom(props) {
                     />
                     <img
                       alt=""
-                      ref={uploadedImage}
+                      ref={uploadedImage  }
                       style={{ height: "120px", width: "120px" }}
                       src={
                         hedaldata?.image_src
@@ -156,7 +176,7 @@ function Add_Edit_userfrom(props) {
                 {/* <option> select form droopdown</option> */}
                 {values.role_id === "3" ? (
                   // eslint-disable-next-line array-callback-return
-                  AdminData.user_list.map ((item) => {
+                  AdminData.user_list.map((item) => {
                     // console.log("hedaldata.role_id" ,hedaldata.reporting_person_name ,"item.role_id",item.name);
                     if (item.role_id === 2) {
                       return <option value={item.id}>{item.name}</option>;
@@ -202,7 +222,7 @@ function Add_Edit_userfrom(props) {
             <div className="bttnDivCrt">
               <button
                 className="bttnCnl"
-                onClick={() => hedalState.setShow(false)}
+                onClick={ handleCancel}
               >
                 Cancel
               </button>

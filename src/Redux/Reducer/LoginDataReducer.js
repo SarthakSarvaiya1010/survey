@@ -17,7 +17,6 @@ import {
         return {
           ...state,
           login_data: action.payload,
-          // uuid: action?.payload?.data?.uuid,
           UserName: action?.payload?.data?.name,
           loading: false,
         };
@@ -29,9 +28,7 @@ import {
           }
           return {
             ...state,
-          };
-     
-  
+          };     
       default:
         return state;
     }

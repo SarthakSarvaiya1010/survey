@@ -21,36 +21,41 @@ function Header() {
           />
           <span>Survey</span>
         </div>
+
+        
         {login_data?.role_id ? (
-          <div>
+          <div style={{display:'flex'}} className=" ">
             <span>hello, {login_data?.name}</span>
-            <NavLink to="/">
-              <img
-                src={
-                  login_data?.profile
-                    ? `http://localhost:4000/${login_data?.profile}`
-                    : loginIcon
-                }
-                alt="loginIcon"
-                style={{ height: "40px", borderRadius: "50%", width: "65px" }}
-              />
-            </NavLink>
-            <button
-              className="logOutBttn"
-              onClick={() => {
-                navigate("/");
-                alert("Log Out succeful");
-                window.location.reload();
-                localStorage.setItem("add", "not");
-              }}
-            >
-              Log Out
-            </button>
+            <img
+              src={
+                login_data?.profile
+                  ? `http://localhost:4000/${login_data?.profile}`
+                  : loginIcon
+              }
+              alt="loginIcon"
+              style={{ height: "40px", borderRadius: "50%", width: "65px" }}
+            />
+<div className="logOutBttnDiv">
+        <button
+                className="logOutBttn"
+                onClick={() => {
+                  navigate("/");
+                  alert("Log Out succeful");
+                  window.location.reload();
+                  localStorage.setItem("add", "not");
+                  localStorage.setItem("admin", "notadmin");
+                }}
+              >
+                Log Out
+              </button>
+            </div>
           </div>
         ) : (
           ""
         )}
-      </div>
+        
+            </div>
+
     </div>
   );
 }
