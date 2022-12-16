@@ -1,0 +1,7 @@
+export {default as surveyImg} from './survey-removebg-preview.png'
+export {default as loginIcon} from './loginIcon.png'
+export {default as checkMark} from './check-mark.png'
+export {default as preview} from './preview.png'
+export {default as palcesHoledr} from './palcesHoledr.png'
+export {default as edit} from './edit.png'
+export {default as delete_img} from './delete_img.png'

@@ -1,0 +1,22 @@
+.footerBttn{
+    background-color: rgb(175, 175, 175);
+    padding-right: 375px;
+}
+
+.finishBttn{
+    /* margin-top:  50px; */
+    display: flex;
+    padding: 15px;
+    /* align-items: flex-end; */
+    justify-content: flex-end;
+    /* padding: 100px; */
+    height: 60px;
+}
+
+.bttnDiv{
+    background-color: green;
+    border-radius: 15px;
+    width: 10%;
+    color: white;
+    font-size: 25px;
+}

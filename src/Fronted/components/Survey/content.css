@@ -1,0 +1,236 @@
+.contentHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+/* color:aliceblue */
+
+}
+
+.contentHeaderqns{
+    display: flex;
+    flex: 1;
+    align-items:center ;
+    flex-direction: column;
+    
+}
+.headerqnsText{
+    padding: 10px;
+   
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+}
+.SurveyTextDiv{
+    margin-left: 15px;
+}
+
+.contentHeaderqnsBttn{
+    border: none;
+    width: 15%;
+    font-size: 25px;
+    color: black;
+    margin: 9px 0 9px 0;
+    border-radius: 15px;
+    height: 55px;
+    margin-right: 15px;
+    background-color: white;
+}
+
+.contentHeaderTital{
+    width: 42%;
+    margin-top:25px ;
+}
+
+.contentHeaderqnsOne{
+display: flex;
+width: 60%;    
+justify-content:space-between;
+background-color: black;
+border-radius: 15px ;
+margin-top:25px ;
+color: white;
+}
+
+
+.contentHeaderqnsOneSucces{
+    /* border-radius: 15px ; */
+    border-radius: 15px   ;
+    border: none;
+    display: flex;
+width: 60%;    
+justify-content:space-between;
+background-color: green;
+margin-top:25px ;
+color: white;    
+}
+
+.contentHeaderqnsOneDisable{
+    border-radius: 15px   ;
+    border: none;
+    display: flex;
+width: 60%;    
+justify-content:space-between;
+background-color: grey;
+margin-top:25px ;
+color: white;
+}
+
+
+
+
+
+.divBttnAccordion{
+    border-radius: 15px    ;
+border: none;
+    width: 100%;
+    color: white;
+    background-color: black;
+}
+
+.divBttnAccordionDisable{
+    border-radius: 15px   ;
+    height: 75px;
+    border: none;
+        width: 100%;
+        color: white;
+        background-color: gray;
+}
+
+
+.divBttnAccordionSucces{
+    border-radius: 15px    0  0 15px;
+    border: none;
+    
+        width: 100%;
+        color: white;
+        background-color: green;
+}
+
+
+
+
+
+
+
+.bgd{
+    
+    min-height: 75vh;
+    background-color: antiquewhite;
+    /* margin-bottom: 50px; */
+    padding-bottom: 75px;
+}
+
+.inpMainDiv{
+    background-color: white;
+    display: flex;
+    margin-left: 15px;
+    margin-top: 15px;
+    
+    
+}
+.surverbgd{
+    background-color: white;
+    display: flex;
+    border-radius: 15px ;
+margin-right: 35px;
+padding: 0 15px 0 15px ; 
+margin-left: 15px;    
+    flex-direction: column;
+    
+}
+
+.expandedsurvay{
+    width: 62%;
+    padding:0 15px; 
+    margin-left: 25px;
+}
+
+
+
+.inpDiv {
+   
+   font-size: 25px;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 50px;
+height: 50px;
+font-weight: bold;
+background-color: white;
+border:1px solid #e9dfdf;
+}
+
+
+.transition{
+    transition: all .3s ease-out;
+  }
+
+.red.active{
+
+    display: flex;
+justify-content: center;
+align-items: center;
+width: 50px;
+color: aliceblue;
+height: 50px;
+background-color: #da1414;
+border:1px solid #e9dfdf;
+
+}
+
+
+.orange.active{
+
+    color: aliceblue;
+
+background-color:#f2970d;
+
+}
+
+
+button:disabled{
+    cursor:not-allowed
+}
+button{
+    cursor: pointer;
+}
+
+
+.green.active{
+
+    display: flex;
+justify-content: center;
+align-items: center;
+width: 50px;
+height: 50px;
+color: aliceblue;
+background-color: #35c03a;
+border:1px solid #e9dfdf;
+
+}
+.textareaInput{
+    width: 70%;
+    height: 80px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+label {
+    cursor: pointer;
+}
+.radioInput{
+    position: absolute;
+visibility:hidden;
+z-index: 0;
+}
+
+
+.contentSelect{
+    padding: 5px;
+    width: 205px;
+    font-size: 17px;
+    
+}

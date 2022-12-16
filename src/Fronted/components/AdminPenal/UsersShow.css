@@ -1,0 +1,71 @@
+
+
+.boxDivCard{   
+    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    /* background-color: white; */
+    /* backgroundv-color:#f5f5f5, */
+    background-color:#f5f5f5;
+    
+    margin:0 25px 0 15px;
+}
+.imgDivCard{
+    border-radius: 15px  15px 0 0;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    height: 125px;
+    background-color:  #d9d9d9;;
+}
+
+
+.nameDivCard p{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+       margin: 0 0 10px  0 ;
+       background-color:  #e4e4e4;
+       border-bottom: 5px solid rgb(85, 74, 74) ;
+   }
+   .nameDivCard h3{
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0  0 0 0; 
+       margin: 0   0 15px;
+       font-size: 24px;
+    }
+   .nameDivCard h4{
+    font-size: 15px;
+    font-weight: lighter;
+    padding: 5px;
+       margin: 5px   0 0 ;
+       color: rgb(139, 128, 113);
+       /* margin-top: 15px; */
+   }
+
+   .textDiv{
+    display: flex;
+    flex:0.5;
+    
+    /* justify-content: space-between; */
+   /* padding: 5px; */
+   }
+
+   .textDivBntt:disabled{
+    cursor: auto;   
+   }
+
+   .textDivBntt{
+     border:none;
+    margin :0 0 20px 0;
+    background-color:"#f5f5f5"
+   }
+
+
+   .nameDivCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+       
+
+   }

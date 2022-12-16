@@ -1,0 +1,40 @@
+.bgdDiv {
+    background-color: #b5915f;
+    width: 90px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bgdDiv.activeBlack {
+    color: beige;
+    background-color: blue;
+}
+
+.bgdDiv.greenBlack {
+    color: beige;
+    background-color: green;
+}
+
+.bgdDiv.green {
+    color: beige;
+    background-color: green;
+}
+
+.Black {
+    background-color: #441a03;
+
+    color: aliceblue;
+}
+
+.bgdDiv.active {
+    color: beige;
+    background-color: blue;
+}
+
+.radioInputDiv {
+    position: absolute;
+    visibility: hidden;
+    z-index: 0;
+}
