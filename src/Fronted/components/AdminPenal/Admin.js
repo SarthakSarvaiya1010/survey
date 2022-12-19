@@ -53,7 +53,6 @@ function Admin() {
             display: "flex",
             flexWrap: "wrap",
             alignItems: "center",
-
             justifyContent: "center",
           }}
         >
@@ -66,7 +65,13 @@ function Admin() {
               />
             ) : null}
 
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                justifyContent: "center",
+              }}
+            >
               {user_data?.map((item, id) => {
                 return (
                   <div

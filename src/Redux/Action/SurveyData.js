@@ -1,5 +1,4 @@
 import {
-  POST_SURVEY_DATA,
   GET_SURVEY_DATA,
   SELECTED_ANS_DATA,
   USER_ERROR,
@@ -9,12 +8,7 @@ import axios from "axios";
 
 
 
-export const SurveyData = (data) => async (dispatch) => {
-  dispatch({
-    type: POST_SURVEY_DATA,
-    payload: data,
-  });
-};
+
 
 export const SelectedAns = (data) => async (dispatch) => {
   console.log("SelectedAns", data);

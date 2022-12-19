@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { checkMark } from "../../../assets/images/index";
-import "./content.css";
+import "./survey.css";
 import { getSurveyData, SelectedAns } from "../../../Redux/Action/SurveyData";
 
 function Survey() {
@@ -70,8 +70,7 @@ function Survey() {
     dispatch(getSurveyData({ logId1 }));
   };
 
-
-//-------------- get  survey person data ------------------------------
+  //-------------- get  survey person data ------------------------------
 
   const headlChenge = (e) => {
     console.log("e.target.value", e.target.value);
@@ -89,19 +88,15 @@ function Survey() {
     }
   };
 
-
-
- // --------------drop down accordion   ------------------------------
+  // --------------drop down accordion   ------------------------------
   const accordion = (id) => {
     setTest(id);
     setExpanded(id + 1);
   };
 
+  // --------------select ans from  drop down   ------------------------------
 
- // --------------select ans from  drop down   ------------------------------
-
-
-  const headlClickAns  = (ansId, qId, sId) => {
+  const headlClickAns = (ansId, qId, sId) => {
     console.log("ansId", ansId, "qId", qId, "sId", sId, "comment", comment);
     let existingAns = ansData.filter((ans) => ans.qid === qId);
     if (existingAns.length > 0) {
@@ -120,8 +115,7 @@ function Survey() {
     }
   };
 
-
-// --------------onClick Save data   ------------------------------
+  // --------------onClick Save data   ------------------------------
 
   const onSavedata = (id) => {
     let ref = parseInt(id) + 1;
@@ -131,23 +125,19 @@ function Survey() {
     dispatch(SelectedAns(ansData));
     setExpanded(ref);
     setTest(ref1);
-
-    // dispatch(submission({ uuid: logId1, surveydata: SurveyData?.surveydata }));
+    setComment(null);
   };
   ansData.comment = comment;
 
+  // --------------onCheng Comment data   ------------------------------
 
-
-// --------------onCheng Comment data   ------------------------------
- 
   const textareaInput = (e) => {
     setComment(e.target.value);
   };
 
+  // -------------- static ans  data   ------------------------------
 
-// -------------- static ans  data   ------------------------------
- 
-let surveyquestionData = [
+  let surveyquestionData = [
     { ans: 1 },
     { ans: 2 },
     { ans: 3 },
@@ -160,9 +150,7 @@ let surveyquestionData = [
     { ans: 10 },
   ];
 
-
   return (
-
     <div className="bgd">
       <div className="contentHeader">
         <div className="contentHeaderTital">
@@ -171,7 +159,7 @@ let surveyquestionData = [
         <h2>
           <button value={logId1} onClick={(e) => headlClick(e)}>
             my survey
-          </button> 
+          </button>
         </h2>
         <div>
           <select onChange={(e) => headlChenge(e)} className="contentSelect">
@@ -179,7 +167,14 @@ let surveyquestionData = [
             {worker_data
               ? worker_data[0]?.id
                 ? worker_data?.map((item) => {
-                    return <option value={item.id} selected={worker_data_selected===item.id}>{item.name}</option>;
+                    return (
+                      <option
+                        value={item.id}
+                        selected={worker_data_selected === item.id}
+                      >
+                        {item.name}
+                      </option>
+                    );
                   })
                 : null
               : null}
@@ -269,7 +264,6 @@ let surveyquestionData = [
                                     item.survey_id,
                                     "done"
                                   );
-                                  // ansactive = ansId <= element && "active";
 
                                   setAnsData([]);
                                   setTest(null);
@@ -326,7 +320,6 @@ let surveyquestionData = [
                           <p>Your review</p>
                           <textarea
                             key={item?.comment}
-                            // type="input"
                             className="textareaInput"
                             onChange={(e) => textareaInput(e)}
                             defaultValue={item?.comment}

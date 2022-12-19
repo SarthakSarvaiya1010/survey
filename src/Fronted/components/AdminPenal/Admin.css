@@ -1,21 +1,21 @@
 .bttnDivMain {
-    padding-right: 245px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    display: flex;
-    justify-content: flex-end;
-  }
-  
-  .bttn {
-    background-color: rgb(157 157 157);
-    padding: 15px;
-    width: 10%;
-    font-size: 20px;
-    border-radius: 15px;
-    border: 1px solid  rgb(157 157 157);
-    color: white;
-  }
-  
-  .mainDivReg{
-    background-color: #e7e6e6;
-  }
+  padding-right: 245px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bttn {
+  background-color: rgb(157 157 157);
+  padding: 15px;
+  width: 10%;
+  font-size: 20px;
+  border-radius: 15px;
+  border: 1px solid rgb(157 157 157);
+  color: white;
+}
+
+.mainDivReg {
+  background-color: #e7e6e6;
+}

@@ -9,6 +9,7 @@ import useForm from "../AdminPenal/Add&Edituser/useForm";
 
 function LoginPageDetails() {
   let dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const { values, OnIntChange, errors } = useForm(null, validate);
@@ -18,79 +19,50 @@ function LoginPageDetails() {
 
   const submit = () => {
     dispatch(postLoginData({ email: values.email, password: values.password }));
-
-    hedalToastButton();
   };
 
-  
-  let add ;
+  let add;
   add = localStorage.getItem("add");
-  let admin ; 
-  admin=localStorage.getItem("admin");
-
+  let admin;
+  admin = localStorage.getItem("admin");
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    
     if (add !== "success" && admin !== "admin") {
       localStorage.clear();
-    }else{console.log("done");}
-    
-    
-    
+    } else {
+      console.log("done");
+    }
+
     if (LoginData?.login_data?.data?.status) {
-    
-      
-         if (LoginData?.login_data?.data?.role_id === 3 ||LoginData?.login_data?.data?.role_id === 2) {
-          
-          localStorage.setItem("add", "success");
-          navigate("/home");
-
-
-
-          console.log("LoginData?.login_data?.data?.role_id === 3 ||LoginData?.login_data?.data?.role_id === 2>>>>home");  
-          
-          
-
-          }
-           else if(LoginData?.login_data?.data?.role_id === 1 ){
-          navigate("/admin")
-
-          localStorage.setItem("admin", "admin");
-          
-          
-          console.log("LoginData?.login_data?.data?.role_id === 1 ============================>>>>admin");
-          
-          
-        }
-        
-       localStorage.setItem(
-        "login_data",
-        JSON.stringify(LoginData?.login_data.data)
-        );
-      
-        
-    
-
-    }else {
-      
-      if (add ==="success") {
-  
-          navigate("/home");
-        console.log("navigate  =====>>>>home");
-        }
-      else if(admin === "admin") {
-        console.log("navigate  =====>>>>admin");
-          navigate("/admin");
+      if (
+        LoginData?.login_data?.data?.role_id === 3 ||
+        LoginData?.login_data?.data?.role_id === 2
+      ) {
+        localStorage.setItem("add", "success");
+        navigate("/home");
       }
 
-    }
-  }, [LoginData?.login_data?.data , add, admin, dispatch, navigate]);
+      if (LoginData?.login_data?.data?.role_id === 1) {
+        localStorage.setItem("admin", "admin");
 
-  
-  
-  
+        navigate("/admin");
+      }
+
+      localStorage.setItem(
+        "login_data",
+        JSON.stringify(LoginData?.login_data.data)
+      );
+    } else {
+      if (add === "success") {
+        navigate("/home");
+        console.log("navigate  =====>>>>home");
+      } else if (admin === "admin") {
+        console.log("navigate  =====>>>>admin");
+        navigate("/admin");
+      }
+    }
+  }, [LoginData?.login_data.data, add, admin, dispatch, navigate]);
+
   const toast = document.querySelector(".toast");
   const progress = document.querySelector(".progress");
 

@@ -1,40 +1,39 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {  Update_user ,Register_user } from "../../../../Redux/Action/UserData";
+import { useNavigate } from "react-router-dom";
+import { Update_user, Register_user } from "../../../../Redux/Action/UserData";
 
-
-
-
-const useForm = (image, validate, hedaldata) => {
+const useForm = (image, validate, hedaldata, hedalState) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [findErrors, setFindErrors] = useState(null);
-  
 
-
-  let SurveyData = useSelector((state) => state?.postsurveyData);
+  let UserData = useSelector((state) => state?.UserData);
 
   useEffect(() => {
-
-     
-
     if (findErrors) {
-      setErrors(validate(values, hedaldata, SurveyData));
+      setErrors(validate(values, hedaldata, UserData));
     }
-  }, [SurveyData, hedaldata, findErrors, validate, values]);
+
+    console.log('"UserData?.user_error?.data?.message' , !Object.keys(errors).length  , findErrors  );
+  
+    console.log("UserData?.user_error?.data?.message", UserData?.user_error?.data?.message);
+    if(!Object.keys(errors).length &&findErrors ){
+        
+      console.log("Object.keys(errors).length",Object.keys(errors).length);
+    }    
+
+  }, [UserData, hedaldata, findErrors, validate, values ]);
+
+
 
   function handleSubmit(event) {
     console.log("value", values);
     setFindErrors(true);
 
-    
-
-   
-
-
-
-    setErrors(validate(values, hedaldata, SurveyData));
+    setErrors(validate(values, hedaldata, UserData));
 
     const formAddUserData = new FormData();
 
@@ -58,7 +57,7 @@ const useForm = (image, validate, hedaldata) => {
       values?.confirmPassword || hedaldata?.confirmPassword
     );
 
-    formAddUserData.append("image_src", image || hedaldata?.image_src    );
+    formAddUserData.append("image_src", image || hedaldata?.image_src);
 
     formAddUserData.append(
       "last_name",
@@ -66,25 +65,20 @@ const useForm = (image, validate, hedaldata) => {
     );
 
     if (hedaldata?.id) {
-      dispatch(Update_user(hedaldata.id, formAddUserData));
       alert("Update is sucefull");
+      if (!Object.keys(errors).length) {
+        window.location.reload();
+        dispatch(Update_user(hedaldata.id, formAddUserData));
+      }
       window.location.reload();
     } else {
       dispatch(Register_user(formAddUserData));
-    }
-
-    if (
-      !values.name &&
-      !values.last_name &&
-      !values.email &&
-      !values.phone &&
-      !values.password &&
-      !values
-    ) {
-      console.log("not done");
-    } else {
-      console.log("erroe", errors);
-      // window.location.reload()
+      if (!!!hedalState?.setShow) {
+        if (!Object.keys(errors).length){
+          alert("Register sucefull");
+          // navigate("/");
+        }
+      }
     }
   }
 
@@ -94,7 +88,7 @@ const useForm = (image, validate, hedaldata) => {
 
     setValues({ ...values, [name]: value });
     if (findErrors) {
-      setErrors(validate(values, hedaldata, SurveyData));
+      setErrors(validate(values, hedaldata, UserData));
     }
   };
 

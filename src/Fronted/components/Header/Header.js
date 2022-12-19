@@ -22,9 +22,8 @@ function Header() {
           <span>Survey</span>
         </div>
 
-        
         {login_data?.role_id ? (
-          <div style={{display:'flex'}} className=" ">
+          <div style={{ display: "flex" }} className=" ">
             <span>hello, {login_data?.name}</span>
             <img
               src={
@@ -35,12 +34,13 @@ function Header() {
               alt="loginIcon"
               style={{ height: "40px", borderRadius: "50%", width: "65px" }}
             />
-<div className="logOutBttnDiv">
-        <button
+            <div className="logOutBttnDiv">
+              <button
                 className="logOutBttn"
                 onClick={() => {
-                  navigate("/");
+                  window.localStorage.clear();
                   alert("Log Out succeful");
+                  navigate("/");
                   window.location.reload();
                   localStorage.setItem("add", "not");
                   localStorage.setItem("admin", "notadmin");
@@ -53,9 +53,7 @@ function Header() {
         ) : (
           ""
         )}
-        
-            </div>
-
+      </div>
     </div>
   );
 }

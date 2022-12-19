@@ -1,128 +1,146 @@
 .boxAddUserMain {
-    /* display: flex; */
-    flex: 1;
-    justify-content: center;
-    background-color: #ffffffff;
-    
-  }
-  
-  .addUserMainLimit {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 20px;
-  }
-  
-  .addUserDataMain {
-    z-index: 1;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 45%;
-    height: 55vh;
-    margin: auto;
-  }
+  /* display: flex; */
+  flex: 1;
+  justify-content: center;
+  background-color: #ffffffff;
+}
 
+.addUserMainLimit {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+}
 
+.addUserDataMain {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 45%;
+  height: 55vh;
+  margin: auto;
+}
 
+.addUserDataMainSign {
+  width: 45%;
+  margin: auto;
+  margin-bottom: 25px;
+  margin-top: 15px;
+  box-shadow: 4px 16px 32px 4px rgba(0, 0, 0, 0.582);
+}
 
-  .addUserDataMainSign{
-    width: 45%;
-    margin: auto;
-    margin-bottom: 25px;
-    margin-top: 15px;
-    box-shadow:4px 16px 32px 4px rgba(0, 0, 0, 0.582);
- 
+.addUserDataMainSign.active {
+  box-shadow: 2px 8px 16px 4px rgba(201, 105, 93, 0.829);
+  /* box-shadow: 0 0 0 0 rgba(0, 0, 0, 1); */
+  /* transform: scale(1); */
+  /* animation: actived 2s infinite; */
+  animation: actived 1s infinite;
+  animation-delay: 1s;
+}
+
+@keyframes actived {
+  50% {
+    box-shadow: 4px 16px 32px 8px rgba(201, 105, 93, 0.829);
   }
-  
-  .textAddDiv {
-    display: flex;
-    justify-content: center;
-    flex: 1;
-    border-bottom: 2px solid black;
-  }
-  
-  .mainIptDiv {
-    display: flex;
-    flex-direction: column;
-    font-size: 25px;
-    color: rgb(122, 117, 117);
-    padding: 5px;
-    border-top: 2px solid black;
-  }
-  .f_l_IptDiv {
-    display: flex;
-    flex: 1;
-    justify-content: space-between;
-    /* flex-direction: column; */
-    /* flex-direction: column; */
-  }
-  
-  .f_l_IptDivMain {
-    display: flex;
-    padding: 5px  0 5px 5px ;
-    flex: 0.5;
-    flex-direction: column;
-    /* margin: 5px; */
-    justify-content: space-between;
-  }
-  
-  .iptDiv {
-    height: 35px;
-    /* padding: 5px; */
-    border-radius: 10px;
-    margin-top: 10px;
-  
-  }
-  
-  .imgSelectDiv {
-    background-color: bisque;
-    height: 120px;
-    width: 120px;
-    display: flex;
-    border: 1px solid;
-  }
-  
-  .f_l_IptDiv_img {
-    display: flex;
-    margin-top: 50px;
-    margin-bottom: 25px;
-  }
-  
-  .bttnDivCrt {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 50px;
-    margin-top: 25px;
-  }
-  
-  .bttnCnl {
-    margin-right: 20px;
-    font-size: 30px;
-    background-color: red;
-    border: none;
-    font-weight: bold;
-    padding: 15px 25px 15px 25px;
-  
-    border-radius: 10px;
-    color: #ffffffff;
-  }
-  .bttnCat {
-    background-color: green;
-    color: #ffffffff;
-    font-size: 30px;
-    border: none;
-    font-weight: bold;
-    padding: 15px 25px 15px 25px;
-  
-    border-radius: 10px;
-  }
-  
-  .danger {
-    color: red;
-    font-size: 15px;
-    
-  }
-  
+}
+
+.textAddDiv {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  border-bottom: 2px solid black;
+}
+
+.mainIptDiv {
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+  color: rgb(122, 117, 117);
+  padding: 5px;
+  border-top: 2px solid black;
+}
+.f_l_IptDiv {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  /* flex-direction: column; */
+}
+
+.f_l_IptDivMain {
+  display: flex;
+  padding: 5px 0 5px 5px;
+  flex: 0.5;
+  flex-direction: column;
+  /* margin: 5px; */
+  justify-content: space-between;
+}
+
+.iptDiv {
+  height: 35px;
+  /* padding: 5px; */
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.imgSelectDiv {
+  background-color: bisque;
+  height: 120px;
+  width: 120px;
+  display: flex;
+  border: 1px solid;
+}
+
+.f_l_IptDiv_img {
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+.f_l_IptDiv_img P {
+  margin: 0;
+  margin-left: 15px;
+  font-size: 17px;
+}
+
+.f_l_IptDiv_img h4 {
+  margin-bottom: 25px;
+  margin-top: 0;
+  margin-left: 15px;
+}
+.bttnDivCrt {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 50px;
+  margin-top: 25px;
+}
+
+.bttnCnl {
+  margin-right: 20px;
+  font-size: 30px;
+  background-color: red;
+  border: none;
+  font-weight: bold;
+  padding: 15px 25px 15px 25px;
+
+  border-radius: 10px;
+  color: #ffffffff;
+}
+.bttnCat {
+  background-color: green;
+  color: #ffffffff;
+  font-size: 30px;
+  border: none;
+  font-weight: bold;
+  padding: 15px 25px 15px 25px;
+
+  border-radius: 10px;
+}
+
+.danger {
+  color: red;
+  font-size: 15px;
+}

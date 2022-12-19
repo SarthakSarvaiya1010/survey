@@ -1,6 +1,6 @@
 import {
   USER_ERROR,
-  REGISTER_USER_DATA,
+  REGISTERING,
   UPDATE_USER_DATA,
   DELETEUSER_DATA,
   USER_ERROR_REGISTER,
@@ -12,7 +12,7 @@ export const Register_user = (data) => async (dispatch) => {
     const res = await axios.post("http://localhost:4000/register", data);
     console.log("header", res.data);
     dispatch({
-      type: REGISTER_USER_DATA,
+      type: REGISTERING,
       payload: { data: res },
     });
   } catch (e) {

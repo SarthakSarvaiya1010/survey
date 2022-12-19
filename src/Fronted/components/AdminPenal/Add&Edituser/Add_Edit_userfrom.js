@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useForm from "./useForm";
 import validate from "./FromValidation";
 import { palcesHoledr } from "../../../../assets/images";
 import "./Add_Edit_userfrom.css";
 import { useNavigate } from "react-router-dom";
+import { getUsetList } from "../../../../Redux/Action/AdminData";
 
 function Add_Edit_userfrom(props) {
   const { hedalState, hedaldata } = props;
@@ -12,17 +13,26 @@ function Add_Edit_userfrom(props) {
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
   const navigate = useNavigate();
+  let dispatch = useDispatch();
 
+  console.log("getUsetList");
 
-console.log("hedalState.setShow hedalState hedalState  "  ,  !!hedalState?.setShow);
-
+  useEffect(() => {
+    dispatch(getUsetList());
+  }, [dispatch]);
+  console.log(
+    "hedalState.setShow hedalState hedalState  ",
+    !!hedalState?.setShow
+  );
 
   let AdminData = useSelector((state) => state?.AdminData);
 
+  console.log("AdminData", AdminData);
   const { values, OnIntChange, handleSubmit, errors } = useForm(
     image,
     validate,
     hedaldata,
+    hedalState
   );
 
   // ---------- hedalImgChage----------
@@ -42,39 +52,50 @@ console.log("hedalState.setShow hedalState hedalState  "  ,  !!hedalState?.setSh
     setImage(file);
   };
 
-    // --------------hedalCancale----------
+  // --------------hedalCancale----------
 
-
-    const handleCancel =()=>{
-      if(!!!hedalState?.setShow){
-
-        navigate("/")
-      }
-      hedalState.setShow(false)
+  const handleCancel = () => {
+    if (!!!hedalState?.setShow) {
+      navigate("/");
     }
+    hedalState.setShow(false);
+  };
+  let sub = Object.keys(errors).length;
 
-
-
+  console.log("errorserrorserrors", sub, errors);
   return (
     <div>
-      <div className={ !!hedalState?.setShow ? "addUserDataMain" : "addUserDataMainSign"}>
-
+      <div
+        className={
+          !!hedalState?.setShow
+            ? `addUserDataMain${errors ? "" : ""}`
+            : `addUserDataMainSign ${
+                Object.keys(errors).length ? "active" : ""
+              }`
+        }
+      >
         <div className="boxAddUserMain">
           <div className="addUserMainLimit">
             {/* -----  Add New Use -------- */}
             <div className="textAddDiv">
-              {hedaldata ? <h1>Edit User</h1> :  !!hedalState?.setShow ? <h1>Add New User</h1> : <h1>Registration</h1> }
+              {hedaldata ? (
+                <h1>Edit User</h1>
+              ) : !!hedalState?.setShow ? (
+                <h1>Add New User</h1>
+              ) : (
+                <h1>Registration</h1>
+              )}
             </div>
             {/*  From start */}
             <div className="mainIptDiv">
               <div className="f_l_IptDiv_img">
-                <div className="">
+                <div>
                   <label className="imgSelectDiv" htmlFor="img">
                     <input
                       type="file"
                       accept="image/*"
                       id="img"
-                      ref={imageUploader }
+                      ref={imageUploader}
                       onChange={hedalImgChage}
                       className="filetype"
                       style={{ display: "none" }}
@@ -82,7 +103,7 @@ console.log("hedalState.setShow hedalState hedalState  "  ,  !!hedalState?.setSh
                     />
                     <img
                       alt=""
-                      ref={uploadedImage  }
+                      ref={uploadedImage}
                       style={{ height: "120px", width: "120px" }}
                       src={
                         hedaldata?.image_src
@@ -94,6 +115,11 @@ console.log("hedalState.setShow hedalState hedalState  "  ,  !!hedalState?.setSh
                 </div>
                 <div>
                   <h4>select display image to Show</h4>
+                  <p>(Image should be of following formats only, </p>
+                  <p>
+                    {" "}
+                    .jpeg, jpeg, .png, Maximum allowed image size is 300kb)
+                  </p>
                 </div>
               </div>
               {/* enter  First Name */}
@@ -173,19 +199,16 @@ console.log("hedalState.setShow hedalState hedalState  "  ,  !!hedalState?.setSh
                 name="reporting_person_id"
                 defaultValue={hedaldata?.reporting_person_id || ""}
               >
-                {/* <option> select form droopdown</option> */}
                 {values.role_id === "3" ? (
                   // eslint-disable-next-line array-callback-return
                   AdminData.user_list.map((item) => {
-                    // console.log("hedaldata.role_id" ,hedaldata.reporting_person_name ,"item.role_id",item.name);
                     if (item.role_id === 2) {
                       return <option value={item.id}>{item.name}</option>;
                     }
                   })
                 ) : (
-                  <option value={0}>dsvd</option>
+                  <option>NAN</option>
                 )}
-                <option value={0}>dsvddsvsd</option>
               </select>
               {errors?.role_id && <p className="danger ">{errors.role_id}</p>}
 
@@ -220,10 +243,7 @@ console.log("hedalState.setShow hedalState hedalState  "  ,  !!hedalState?.setSh
               </div>
             </div>
             <div className="bttnDivCrt">
-              <button
-                className="bttnCnl"
-                onClick={ handleCancel}
-              >
+              <button className="bttnCnl" onClick={handleCancel}>
                 Cancel
               </button>
               <button className="bttnCat" onClick={handleSubmit}>
