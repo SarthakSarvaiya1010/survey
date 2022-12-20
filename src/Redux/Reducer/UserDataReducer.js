@@ -21,7 +21,6 @@ const UserDataReducer = (state = initialState, action) => {
         ...state,
       };
     case USER_ERROR_REGISTER:
-      console.log("USER_ERROR_REGISTER", action.payload);
       return {
         ...state,
         user_error: action.payload,

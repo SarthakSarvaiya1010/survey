@@ -65,7 +65,6 @@ function Survey() {
 
   const d = new Date();
   let month = d.toLocaleString("default", { month: "long", year: "numeric" });
-
   const headlClick = () => {
     dispatch(getSurveyData({ logId1 }));
   };
@@ -73,10 +72,8 @@ function Survey() {
   //-------------- get  survey person data ------------------------------
 
   const headlChenge = (e) => {
-    console.log("e.target.value", e.target.value);
     if (e.target.value !== "select from droopdown" && e.target.value) {
       dispatch(getSurveyData(e.target.value));
-
       localStorage.setItem(
         "worker_data_selected",
         JSON.stringify(e?.target?.value) || "[]"
@@ -97,7 +94,6 @@ function Survey() {
   // --------------select ans from  drop down   ------------------------------
 
   const headlClickAns = (ansId, qId, sId) => {
-    console.log("ansId", ansId, "qId", qId, "sId", sId, "comment", comment);
     let existingAns = ansData.filter((ans) => ans.qid === qId);
     if (existingAns.length > 0) {
       existingAns.forEach((f) => {
@@ -120,8 +116,6 @@ function Survey() {
   const onSavedata = (id) => {
     let ref = parseInt(id) + 1;
     let ref1 = parseInt(id);
-    console.log("id_ref ===>", ref);
-
     dispatch(SelectedAns(ansData));
     setExpanded(ref);
     setTest(ref1);
@@ -258,13 +252,6 @@ function Survey() {
                                   // eslint-disable-next-line eqeqeq
                                   parseInt(test) == item.survey_id - 1
                                 ) {
-                                  console.log(
-                                    "donelength",
-                                    test,
-                                    item.survey_id,
-                                    "done"
-                                  );
-
                                   setAnsData([]);
                                   setTest(null);
                                 }

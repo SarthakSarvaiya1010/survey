@@ -4,7 +4,6 @@ import axios from "axios";
 export const getUsetList = () => async (dispatch) => {
   try {
     const res = await axios.get("http://localhost:4000/users");
-    console.log("header", res.data);
     dispatch({
       type: GET_USER_LIST,
       payload: res.data,

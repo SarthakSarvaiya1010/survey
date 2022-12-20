@@ -7,27 +7,18 @@ import "./Add_Edit_userfrom.css";
 import { useNavigate } from "react-router-dom";
 import { getUsetList } from "../../../../Redux/Action/AdminData";
 
-function Add_Edit_userfrom(props) {
-  const { hedalState, hedaldata } = props;
+function AddEdituserfrom(props) {
+  const navigate = useNavigate();
+  let dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const uploadedImage = React.useRef(null);
   const imageUploader = React.useRef(null);
-  const navigate = useNavigate();
-  let dispatch = useDispatch();
-
-  console.log("getUsetList");
-
-  useEffect(() => {
-    dispatch(getUsetList());
-  }, [dispatch]);
-  console.log(
-    "hedalState.setShow hedalState hedalState  ",
-    !!hedalState?.setShow
-  );
+  const { hedalState, hedaldata } = props;
 
   let AdminData = useSelector((state) => state?.AdminData);
 
-  console.log("AdminData", AdminData);
+  //--------------Form validate ------------------------------
+
   const { values, OnIntChange, handleSubmit, errors } = useForm(
     image,
     validate,
@@ -35,7 +26,14 @@ function Add_Edit_userfrom(props) {
     hedalState
   );
 
+  //--------------  useEffect ------------------------------
+
+  useEffect(() => {
+    dispatch(getUsetList());
+  }, [dispatch]);
+
   // ---------- hedalImgChage----------
+
   const hedalImgChage = (event) => {
     const [file] = event.target.files;
 
@@ -60,9 +58,7 @@ function Add_Edit_userfrom(props) {
     }
     hedalState.setShow(false);
   };
-  let sub = Object.keys(errors).length;
 
-  console.log("errorserrorserrors", sub, errors);
   return (
     <div>
       <div
@@ -134,11 +130,9 @@ function Add_Edit_userfrom(props) {
                     name="name"
                     onChange={(e) => OnIntChange(e)}
                   />
-                  <div style={{ position: "revert" }}>
-                    {errors?.name ? (
-                      <p className="danger ">{errors.name}</p>
-                    ) : null}
-                  </div>
+                  {errors?.name ? (
+                    <p className="danger ">{errors.name}</p>
+                  ) : null}
                 </div>
                 <div className="f_l_IptDivMain">
                   Last Name
@@ -257,4 +251,4 @@ function Add_Edit_userfrom(props) {
   );
 }
 
-export default Add_Edit_userfrom;
+export default AddEdituserfrom;

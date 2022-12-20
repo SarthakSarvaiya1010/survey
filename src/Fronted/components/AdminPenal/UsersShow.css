@@ -1,3 +1,9 @@
+.divBox {
+  margin-top: 25px;
+  width: 280px;
+  margin-bottom: 25px;
+}
+
 .boxDivCard {
   border-radius: 15px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -36,7 +42,7 @@
   font-weight: lighter;
   padding: 5px;
   margin: 5px 0 0;
-  color: rgb(139, 128, 113);
+  color: rgb(118, 113, 139);
   /* margin-top: 15px; */
 }
 
@@ -52,11 +58,16 @@
 .textDivBntt {
   border: none;
   margin: 0 0 20px 0;
-  background-color: "#f5f5f5";
+  /* background-color: "#f5f5f5"; */
 }
 
 .nameDivCard {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.reportText {
+  display: flex;
+  justify-content: space-between;
 }

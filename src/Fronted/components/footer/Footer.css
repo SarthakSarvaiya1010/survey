@@ -1,19 +1,29 @@
 .footerBttn {
   background-color: rgb(175, 175, 175);
-  padding-right: 375px;
+  /* padding-right: 375px; */
 }
 
+.finishBox {
+  display: flex;
+  flex: 1;
+}
+
+.finishBoxBlank {
+  display: flex;
+  flex: 0.5;
+}
 .finishBttn {
+  flex: 0.5;
   display: flex;
   padding: 15px;
-  justify-content: flex-end;
+  justify-content: center;
   height: 60px;
 }
 
 .bttnDiv {
   background-color: green;
   border-radius: 15px;
-  width: 10%;
+  width: 15%;
   color: white;
   font-size: 25px;
 }

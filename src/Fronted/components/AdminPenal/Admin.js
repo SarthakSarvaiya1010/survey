@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsetList } from "../../../Redux/Action/AdminData";
+import { SelectedAns } from "../../../Redux/Action/SurveyData";
 // import { AddUserData } from "../index";
-import Add_Edit_userfrom from "./Add&Edituser/Add_Edit_userfrom";
+import AddEdituserfrom from "./Add&Edituser/AddEdituserfrom";
 import "./Admin.css";
 import UsersShow from "./UsersShow";
 
@@ -10,16 +11,16 @@ function Admin() {
   let dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [userData, setUserData] = useState(null);
-
   let AdminData = useSelector((state) => state?.AdminData);
-
-  useEffect(() => {
-    dispatch(getUsetList());
-  }, [dispatch]);
 
   let user_data = AdminData?.user_list.filter(
     (item) => item?.role_id === 2 || item?.role_id === 3
   );
+
+  useEffect(() => {
+    dispatch(getUsetList());
+    dispatch(SelectedAns(show));
+  }, [dispatch, show]);
 
   useEffect(() => {
     function handleEscapeKey(event) {
@@ -27,19 +28,15 @@ function Admin() {
         setShow(false);
       }
     }
-
     document.addEventListener("keydown", handleEscapeKey);
-
     return () => document.removeEventListener("keydown", handleEscapeKey);
   }, []);
-
-  console.log("userDatauserData", userData);
 
   return (
     <div className={show ? "mainDivReg" : null}>
       <div className="bttnDivMain">
         <button
-          className="bttn"
+          className="fromBttn"
           onClick={() => {
             (show ? setShow(false) : setShow(true))(setUserData());
           }}
@@ -48,46 +45,24 @@ function Admin() {
         </button>
       </div>
       <div>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div style={{ display: "flex", flexWrap: "wrap", width: "75%" }}>
+        <div className="showUserDiv">
+          <div className="showUserDivBox">
             {show ? (
-              // eslint-disable-next-line react/jsx-pascal-case
-              <Add_Edit_userfrom
+              <AddEdituserfrom
                 hedalState={{ setShow, show }}
                 hedaldata={userData}
               />
             ) : null}
 
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                justifyContent: "center",
-              }}
-            >
+            <div className="userDivBox">
               {user_data?.map((item, id) => {
                 return (
-                  <div
+                  <UsersShow
                     key={id}
-                    style={{
-                      marginTop: "25px",
-                      width: "280px",
-                      marginBottom: "25px",
-                    }}
-                  >
-                    <UsersShow
-                      item={item}
-                      hedalState={{ setShow, show }}
-                      hedaldata={setUserData}
-                    />
-                  </div>
+                    item={item}
+                    hedalState={{ setShow, show }}
+                    hedaldata={setUserData}
+                  />
                 );
               })}
             </div>

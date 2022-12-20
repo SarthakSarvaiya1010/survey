@@ -13,11 +13,10 @@ export default function validate(values, hedaldata, UserData) {
   } else if (!/\S+@\S+\.\S+/.test(values.email || hedaldata?.email)) {
     errors.email = "Email address is invalid";
   } else if (UserData.user_error) {
-    if (UserData?.user_error?.data?.statusCode === "400") {
-      errors.email = UserData?.user_error?.data?.message;
+    if (UserData?.user_error?.data?.message) {
+      // alert(UserData?.user_error?.data?.message);
     }
   }
-
   if (!hedaldata?.phone && !values?.phone) {
     errors.phone = "phone number is required";
   } else if (

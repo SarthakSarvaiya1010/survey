@@ -12,12 +12,9 @@ const initialState = {
 const SurveyDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case SELECTED_ANS_DATA:
-      console.log("action.payload", action.payload);
       let myrep = action.payload;
       let comper = action?.payload?.comment;
-      console.log("commentdata", comper);
       if (myrep.length > 0) {
-        console.log("action.payload after blacck ", myrep);
         state.surveydata.map((item) => {
           item.question.map((element) => {
             let select = myrep.find((name) => name.qid === element.qid);

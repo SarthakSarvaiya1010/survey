@@ -6,7 +6,7 @@
   justify-content: flex-end;
 }
 
-.bttn {
+.fromBttn {
   background-color: rgb(157 157 157);
   padding: 15px;
   width: 10%;
@@ -18,4 +18,20 @@
 
 .mainDivReg {
   background-color: #e7e6e6;
+}
+
+.showUserDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.showUserDivBox {
+  width: 75%;
+}
+
+.userDivBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }

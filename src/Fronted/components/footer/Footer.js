@@ -25,16 +25,19 @@ function Footer() {
 
   return (
     <div className="footerBttn">
-      <div className="finishBttn">
-        {login_data?.role_id === 2 || login_data?.role_id === 3 ? (
-          <button
-            className="bttnDiv"
-            disabled={!Surveydata?.surveydata[2]?.comment}
-            onClick={() => submission_data()}
-          >
-            Finish
-          </button>
-        ) : null}
+      <div className="finishBox">
+        <div className="finishBoxBlank"></div>
+        <div className="finishBttn">
+          {login_data?.role_id === 2 || login_data?.role_id === 3 ? (
+            <button
+              className="bttnDiv"
+              disabled={!Surveydata?.surveydata[2]?.comment}
+              onClick={() => submission_data()}
+            >
+              Finish
+            </button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

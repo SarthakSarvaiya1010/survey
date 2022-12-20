@@ -9,29 +9,30 @@ import useForm from "../AdminPenal/Add&Edituser/useForm";
 
 function LoginPageDetails() {
   let dispatch = useDispatch();
-
   const navigate = useNavigate();
-
+  let LoginData = useSelector((state) => state.LoginData);
   const { values, OnIntChange, errors } = useForm(null, validate);
 
-  // let SurveyData = useSelector((state) => state.postsurveyData);
-  let LoginData = useSelector((state) => state.LoginData);
+  //-------------- on submit click------------------------------
 
   const submit = () => {
     dispatch(postLoginData({ email: values.email, password: values.password }));
   };
+
+  //-------------- for localStorage grtItem------------------------------
 
   let add;
   add = localStorage.getItem("add");
   let admin;
   admin = localStorage.getItem("admin");
 
+  //--------------  useEffect ------------------------------
+
   useEffect(() => {
-    if (add !== "success" && admin !== "admin") {
+    if (admin === "notns" || add === "notns") {
       localStorage.clear();
-    } else {
-      console.log("done");
     }
+    //-------------- for localStorage setItem------------------------------
 
     if (LoginData?.login_data?.data?.status) {
       if (
@@ -41,10 +42,8 @@ function LoginPageDetails() {
         localStorage.setItem("add", "success");
         navigate("/home");
       }
-
       if (LoginData?.login_data?.data?.role_id === 1) {
         localStorage.setItem("admin", "admin");
-
         navigate("/admin");
       }
 
@@ -52,113 +51,64 @@ function LoginPageDetails() {
         "login_data",
         JSON.stringify(LoginData?.login_data.data)
       );
-    } else {
+    }
+    //-------------- for navigtion ------------------------------
+    else {
       if (add === "success") {
         navigate("/home");
-        console.log("navigate  =====>>>>home");
-      } else if (admin === "admin") {
-        console.log("navigate  =====>>>>admin");
+      }
+      if (admin === "admin") {
         navigate("/admin");
       }
     }
   }, [LoginData?.login_data.data, add, admin, dispatch, navigate]);
 
-  const toast = document.querySelector(".toast");
-  const progress = document.querySelector(".progress");
-
-  let timer1, timer2;
-
-  const hedalToastButton = () => {
-    toast.classList.add("active");
-    progress.classList.add("active");
-
-    timer1 = setTimeout(() => {
-      toast.classList.remove("active");
-    }, 2000); //1s = 1000 milliseconds
-
-    timer2 = setTimeout(() => {
-      progress.classList.remove("active");
-    }, 2100);
-  };
-
-  const henadCloseIcon = () => {
-    toast.classList.remove("active");
-
-    setTimeout(() => {
-      progress.classList.remove("active");
-    }, 300);
-
-    clearTimeout(timer1);
-    clearTimeout(timer2);
-  };
-
   return (
-    <div>
-      <div>
-        <div class="toast ">
-          <div class="toast-content">
-            <i class="fas fa-solid fa-check check"></i>
-
-            <div class="message">
-              <span class="text text-1">Success</span>
-              <span class="text text-2">Your changes has been saved</span>
-            </div>
+    <div className="LoginPageBody">
+      <div className="box">
+        <div className="formLogin">
+          <h2>Login</h2>
+          <div className="inputBox">
+            <span>Email</span>
           </div>
-          <i class="fa-solid fa-xmark close" onClick={() => henadCloseIcon()}>
-            +*+
-          </i>
-          <div class="progress "></div>
-        </div>
-      </div>
-
-      <div className="LoginPageBody">
-        <div className="box">
-          <div className="formLogin">
-            <h2>Login</h2>
+          <form>
+            <input
+              type="email"
+              className="inputBoxDiv"
+              name="email"
+              onChange={(e) => OnIntChange(e)}
+            />
+            {errors?.email ? (
+              <span className="danger ">{errors.email}</span>
+            ) : null}
             <div className="inputBox">
-              <span>Email</span>
+              <span>Password</span>
             </div>
-            <form>
-              <input
-                type="email"
-                className="inputBoxDiv"
-                name="email"
-                onChange={(e) => OnIntChange(e)}
-              />
-              {errors?.email ? (
-                <span className="danger ">{errors.email}</span>
-              ) : null}
-              <div className="inputBox">
-                <span>Password</span>
-              </div>
-              <input
-                type="password"
-                className="inputBoxDiv"
-                name="password"
-                onChange={(e) => OnIntChange(e)}
-              />
-            </form>
-            <div className="linksLog">
-              <a href="Reset password">Reset password?</a>
-              <NavLink to="/sign_up">Sign up</NavLink>
-            </div>
-
-            <button
-              value="Login"
-              className="loginBttn"
-              onClick={(e) => submit(e)}
-            >
-              Login
-            </button>
+            <input
+              type="password"
+              className="inputBoxDiv"
+              name="password"
+              onChange={(e) => OnIntChange(e)}
+            />
+          </form>
+          <div className="linksLog">
+            <a href="Reset password">Reset password?</a>
+            <NavLink to="/sign_up">Sign up</NavLink>
           </div>
+          <button
+            value="Login"
+            className="loginBttn"
+            onClick={(e) => submit(e)}
+          >
+            Login
+          </button>
         </div>
-
-        <img
-          src={preview}
-          alt="preview"
-          style={{ width: "50%", marginTop: "100px" }}
-        ></img>
       </div>
+      <img
+        src={preview}
+        alt="preview"
+        style={{ width: "50%", marginTop: "100px" }}
+      ></img>
     </div>
   );
 }

@@ -11,28 +11,22 @@ const useForm = (image, validate, hedaldata, hedalState) => {
   const [findErrors, setFindErrors] = useState(null);
 
   let UserData = useSelector((state) => state?.UserData);
-
   useEffect(() => {
     if (findErrors) {
       setErrors(validate(values, hedaldata, UserData));
     }
+    if (UserData?.register_user_data?.data?.data?.status) {
+      navigate("/");
+      window.location.reload();
+      alert("Register sucefull");
+    }
+  }, [UserData, hedaldata, findErrors, validate, values, navigate]);
 
-    console.log('"UserData?.user_error?.data?.message' , !Object.keys(errors).length  , findErrors  );
-  
-    console.log("UserData?.user_error?.data?.message", UserData?.user_error?.data?.message);
-    if(!Object.keys(errors).length &&findErrors ){
-        
-      console.log("Object.keys(errors).length",Object.keys(errors).length);
-    }    
-
-  }, [UserData, hedaldata, findErrors, validate, values ]);
-
-
-
-  function handleSubmit(event) {
-    console.log("value", values);
+  function handleSubmit() {
     setFindErrors(true);
-
+    if (UserData?.user_error?.data?.message && findErrors) {
+      alert(UserData?.user_error?.data?.message);
+    }
     setErrors(validate(values, hedaldata, UserData));
 
     const formAddUserData = new FormData();
@@ -73,18 +67,11 @@ const useForm = (image, validate, hedaldata, hedalState) => {
       window.location.reload();
     } else {
       dispatch(Register_user(formAddUserData));
-      if (!!!hedalState?.setShow) {
-        if (!Object.keys(errors).length){
-          alert("Register sucefull");
-          // navigate("/");
-        }
-      }
     }
   }
 
   const OnIntChange = (e) => {
     const { name, value } = e.target;
-    console.log("useForm validate validate validate", e.target.value, errors);
 
     setValues({ ...values, [name]: value });
     if (findErrors) {

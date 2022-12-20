@@ -23,7 +23,7 @@ function Header() {
         </div>
 
         {login_data?.role_id ? (
-          <div style={{ display: "flex" }} className=" ">
+          <div className="userNameDiv">
             <span>hello, {login_data?.name}</span>
             <img
               src={
@@ -39,11 +39,10 @@ function Header() {
                 className="logOutBttn"
                 onClick={() => {
                   window.localStorage.clear();
-                  alert("Log Out succeful");
                   navigate("/");
-                  window.location.reload();
-                  localStorage.setItem("add", "not");
-                  localStorage.setItem("admin", "notadmin");
+                  alert("Log Out succeful");
+                  localStorage.setItem("admin", "notns");
+                  localStorage.setItem("add", "notns");
                 }}
               >
                 Log Out

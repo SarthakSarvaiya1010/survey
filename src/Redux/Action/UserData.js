@@ -10,7 +10,6 @@ import axios from "axios";
 export const Register_user = (data) => async (dispatch) => {
   try {
     const res = await axios.post("http://localhost:4000/register", data);
-    console.log("header", res.data);
     dispatch({
       type: REGISTERING,
       payload: { data: res },
@@ -39,7 +38,6 @@ export const Update_user = (id, data) => async (dispatch) => {
 };
 
 export const Delete_user = (id) => async (dispatch) => {
-  console.log("Delete_user", id);
   try {
     const res = await axios.delete(`http://localhost:4000/delete/${id}`);
     dispatch({
